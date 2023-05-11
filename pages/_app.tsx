@@ -1,20 +1,21 @@
 import '../styles/globals.css'
 import Footer from '../components/Footer'
 import Head from 'next/head'
-import { Montserrat } from 'next/font/google'
+import { Rajdhani } from 'next/font/google'
 
-const montserrat = Montserrat({
+const rajdhani = Rajdhani({
+  weight: '400',
   subsets: ['latin'],
-  variable: '--font-montserrat',
 })
 
 export default function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>The Coffee House</title>
+        <title>SmoothySense</title>
+        <link rel="shortcut icon" href='/logo-2.png' type="image/x-icon" />
       </Head>
-      <main className={`${montserrat.variable} font-sans`}>
+      <main className={`${rajdhani.className}`}>
         <Component {...pageProps} />
         <Footer />
       </main>

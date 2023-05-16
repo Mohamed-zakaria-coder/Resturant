@@ -1,8 +1,29 @@
 import Image from 'next/image'
 import Navbar from "../../components/Navbar";
+import CartDialog from "../../components/CartDialog";
 import { getProducts, getProduct } from '../../helpers'
+import { useState, useEffect } from 'react'
+import { getToken } from "../../auth";
+import NotifyDialog from '../../components/NotifyDialog';
+import AddToCartBtn from '../../components/AddToCartBtn';
+
 
 export default function Product({ product }) {
+  const [dialogOpened, setDialogOpened] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [notifyDialogOpened, setNotifyDialogOpened] = useState(false)
+  useEffect(() => {
+    setLoggedIn(getToken());
+  }, []);
+
+  
+  const handleClick = ()=> {
+    if (loggedIn) {
+      return setDialogOpened(true)
+    }
+    setNotifyDialogOpened(true);
+  }
+
 
   return (
     <>
@@ -28,6 +49,17 @@ export default function Product({ product }) {
                 Description
               </div>
               <p className="max-w-xl">{product.description}</p>
+              <AddToCartBtn handleClick={handleClick}/>
+              {
+                dialogOpened && (
+                  <CartDialog product={product} setDialogOpened={setDialogOpened}/>
+                )
+              }
+              {
+                notifyDialogOpened && (
+                  <NotifyDialog setDialogOpened={setNotifyDialogOpened}/>
+                )
+              }
             </div>
           </div>
         </div>

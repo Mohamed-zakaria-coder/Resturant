@@ -39,7 +39,7 @@ export default function Header({ scrollHandler, whyUs }) {
   };
 
   return (
-    <header className="relative h-[80vh]">
+    <header className="relative h-[90vh] sm:h-[80vh]">
       {notifyDialogOpened && (
         <NotifyDialog setDialogOpened={setNotifyDialogOpened} />
       )}
@@ -164,8 +164,8 @@ export default function Header({ scrollHandler, whyUs }) {
             <div className="absolute inset-0 bg-gray-600 mix-blend-multiply" />
           </div>
           <div className="flex justify-between w-full h-full pt-16 flex-col sm:flex-row">
-            <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8 mb-10">
-              <h1 className="mt-1 font-bold text-gray-900 text-6xl sm:tracking-tight lg:text-8xl">
+            <div className="relative px-4 pt-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8 sm:mb-10">
+              <h1 className="mt-1 font-bold text-gray-900 text-5xl sm:tracking-tight lg:text-8xl">
                 <span className="block text-green-400">SmoothySense</span>
                 <p className="relative left-0 right-0 max-w-2xl text-2xl sm:text-3xl font-semibold uppercase tracking-wide text-white">
                   A natural way to spice up your love life.

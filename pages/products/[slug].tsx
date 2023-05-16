@@ -33,7 +33,7 @@ export default function Product({ product }) {
           <div className="mx-auto flex flex-col sm:flex-row">
             <Image
               alt={product.slug}
-              className="rounded-lg"
+              className="rounded-lg object-cover"
               src={product.image}
               width={560}
               height={640}

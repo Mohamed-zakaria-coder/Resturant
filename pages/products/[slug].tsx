@@ -33,17 +33,17 @@ export default function Product({ product }) {
           <div className="mx-auto flex flex-col sm:flex-row">
             <Image
               alt={product.slug}
-              className="rounded-lg object-cover"
+              className="rounded-lg object-contain sm:w-[50%]"
               src={product.image}
-              width={560}
-              height={640}
+              width={1000}
+              height={1000}
             />
             <div className="mt-10 flex flex-col sm:mt-0 sm:ml-10">
               <h1 className="mt-1 text-4xl font-bold uppercase text-gray-900 sm:text-5xl sm:tracking-tight lg:text-5xl">
                 {product.title}
               </h1>
               <h1 className="mt-3 text-4xl font-bold text-gray-500 sm:text-3xl sm:tracking-tight lg:text-3xl">
-                ${product.price}
+                {product.price} EGP
               </h1>
               <div className="mt-10 mb-5 border-t border-gray-200 pt-10 font-bold">
                 Description

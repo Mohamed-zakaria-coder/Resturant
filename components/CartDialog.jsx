@@ -15,7 +15,7 @@ const CartDialog = ({ product, setDialogOpened }) => {
     }
   };
   return (
-    <div className="fixed w-screen h-screen bg-gray-300/50 flex items-center justify-center top-0 left-0">
+    <div className="fixed w-screen h-screen bg-gray-300/50 flex items-center justify-center top-0 left-0 z-50">
       <div className="w-64 rounded-lg bg-white p-4 shadow-md">
         <div className="flex justify-between items-center mb-2">
           <h4 className="capitalize font-semibold">{product.title}</h4>

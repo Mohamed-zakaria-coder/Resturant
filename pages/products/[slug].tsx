@@ -1,29 +1,26 @@
-import Image from 'next/image'
+import Image from "next/image";
 import Navbar from "../../components/Navbar";
 import CartDialog from "../../components/CartDialog";
-import { getProducts, getProduct } from '../../helpers'
-import { useState, useEffect } from 'react'
+import { getProducts, getProduct } from "../../helpers";
+import { useState, useEffect } from "react";
 import { getToken } from "../../auth";
-import NotifyDialog from '../../components/NotifyDialog';
-import AddToCartBtn from '../../components/AddToCartBtn';
-
+import NotifyDialog from "../../components/NotifyDialog";
+import AddToCartBtn from "../../components/AddToCartBtn";
 
 export default function Product({ product }) {
-  const [dialogOpened, setDialogOpened] = useState(false)
+  const [dialogOpened, setDialogOpened] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [notifyDialogOpened, setNotifyDialogOpened] = useState(false)
+  const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
   useEffect(() => {
     setLoggedIn(getToken());
   }, []);
 
-  
-  const handleClick = ()=> {
+  const handleClick = () => {
     if (loggedIn) {
-      return setDialogOpened(true)
+      return setDialogOpened(true);
     }
     setNotifyDialogOpened(true);
-  }
-
+  };
 
   return (
     <>
@@ -49,37 +46,36 @@ export default function Product({ product }) {
                 Description
               </div>
               <p className="max-w-xl">{product.description}</p>
-              <AddToCartBtn handleClick={handleClick}/>
-              {
-                dialogOpened && (
-                  <CartDialog product={product} setDialogOpened={setDialogOpened}/>
-                )
-              }
-              {
-                notifyDialogOpened && (
-                  <NotifyDialog setDialogOpened={setNotifyDialogOpened}/>
-                )
-              }
+              <AddToCartBtn handleClick={handleClick} />
+              {dialogOpened && (
+                <CartDialog
+                  product={product}
+                  setDialogOpened={setDialogOpened}
+                />
+              )}
+              {notifyDialogOpened && (
+                <NotifyDialog setDialogOpened={setNotifyDialogOpened} />
+              )}
             </div>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export async function getStaticProps({ params }) {
-  const product = await getProduct(params.slug)
+  const product = await getProduct(params.slug);
 
   return {
     props: {
       product: product,
     },
-  }
+  };
 }
 
 export async function getStaticPaths() {
-  const products = await getProducts()
+  const products = await getProducts();
 
   const paths = products.map((product) => ({
     params: { slug: product.slug },
@@ -88,5 +84,5 @@ export async function getStaticPaths() {
   return {
     paths: paths,
     fallback: false,
-  }
+  };
 }

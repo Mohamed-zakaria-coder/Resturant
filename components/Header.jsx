@@ -114,7 +114,7 @@ export default function Header({ scrollHandler, whyUs }) {
               onClick={handleCartClick}
               className="mr-4 mb-1 text-green-400 relative"
             >
-              {cartItems.length > 0 && (
+              {cartItems && cartItems.length > 0 && (
                 <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[-8px] w-5 h-5">
                   {cartItems.length}
                 </span>

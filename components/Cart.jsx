@@ -47,7 +47,7 @@ const Cart = ({ closeCart, cartItems, openNotification }) => {
                 </svg>
               </div>
             </header>
-
+            {/* {console.log(cartItems)} */}
             {!checkoutOpened && (
               <>
                 {cartItems.length > 0 &&
@@ -56,7 +56,7 @@ const Cart = ({ closeCart, cartItems, openNotification }) => {
                       <CartCard
                         index={i}
                         item={item}
-                        key={item._id + JSON.stringify(item.product.title)}
+                        key={item._id + item.product.title}
                         cartItems={cartItems}
                       />
                     );
@@ -134,25 +134,32 @@ const Cart = ({ closeCart, cartItems, openNotification }) => {
 export default Cart;
 
 export const CartCard = ({ item }) => {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const DeleteProduct = async () => {
+    setLoading(true);
     const res = await removeFromCart(item.product._id);
     if ((res.message = "Successfully Removed")) {
       dispatch(getItems(res.cart_items));
+      setLoading(false);
     }
   };
 
   const increaseProduct = async () => {
+    setLoading(true);
     const res = await addToCart(item.product._id, 1);
     if ((res.message = "Successfully Added")) {
       dispatch(getItems(res.cart_items));
+      setLoading(false);
     }
   };
 
   const decreaseProduct = async () => {
+    setLoading(true);
     const res = await minusFromCart(item.product._id);
     if ((res.message = "Successfully Minused")) {
       dispatch(getItems(res.cart_items));
+      setLoading(false);
     }
   };
 
@@ -174,6 +181,9 @@ export const CartCard = ({ item }) => {
               <h3 className="text-normal font-bold sm:text-2xl capitalize">
                 {item.product.title}
               </h3>
+              <h3 className="text-normal font-base sm:text-xl capitalize">
+                {item.product.price} EGP/unit
+              </h3>
             </div>
           </div>
           <div>{/* <span>${product.price * product.quantity}</span> */}</div>
@@ -181,7 +191,10 @@ export const CartCard = ({ item }) => {
         <div className="flex justify-center items-center mb-4">
           <button
             onClick={() => DeleteProduct(item.product)}
-            className="flex justify-center items-center mr-2 ease-in-out duration-500 text-2xl  w-12 h-12 border hover:border-gray-300"
+            className={`ease-in-out duration-500 w-12 h-12 border hover:border-gray-300 text-xl ${
+              loading && "bg-gray-200 text-black cursor-wait"
+            }`}
+            disabled={loading}
           >
             ×
           </button>
@@ -194,7 +207,9 @@ export const CartCard = ({ item }) => {
           />
 
           <button
-            className="ease-in-out duration-500 w-12 h-12 border hover:border-gray-300 text-xl"
+            className={`ease-in-out duration-500 w-12 h-12 border hover:border-gray-300 text-xl ${
+              loading && "bg-gray-200 text-black cursor-wait"
+            }`}
             style={{
               cursor: item.quantity <= 1 ? "not-allowed" : "pointer",
             }}
@@ -205,15 +220,19 @@ export const CartCard = ({ item }) => {
                 decreaseProduct();
               }
             }}
+            disabled={loading}
           >
             -
           </button>
           <button
-            className=" ease-in-out duration-500 w-12 h-12 border hover:border-gray-300 text-xl"
+            className={`ease-in-out duration-500 w-12 h-12 border hover:border-gray-300 text-xl ${
+              loading && "bg-gray-200 text-black cursor-wait"
+            }`}
             style={{
               cursor: item.quantity >= 20 ? "not-allowed" : "pointer",
             }}
             onClick={() => increaseProduct()}
+            disabled={loading}
           >
             +
           </button>

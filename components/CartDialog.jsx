@@ -1,17 +1,21 @@
+import { useState } from "react";
 import { addToCart } from "../helpers";
 import { getItems } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
 
 const CartDialog = ({ product, setDialogOpened }) => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     var formData = Object.fromEntries(new FormData(e.target));
     const res = await addToCart(formData.product_id, Number(formData.quantity));
     if ((res.message = "Successfully Added")) {
-      setDialogOpened(false);
       dispatch(getItems(res.cart_items));
+      setLoading(false);
+      setDialogOpened(false);
     }
   };
   return (
@@ -46,7 +50,14 @@ const CartDialog = ({ product, setDialogOpened }) => {
             value={product._id}
           />
           <br />
-          <button className="bg-green-400 text-white rounded p-2 px-4 mt-2 justify-self-end">
+          <button
+            className={`${
+              loading
+                ? "bg-gray-200 text-black cursor-wait"
+                : "bg-green-400 text-white"
+            } rounded p-2 px-4 mt-2 justify-self-end`}
+            disabled={loading}
+          >
             ADD
           </button>
         </form>

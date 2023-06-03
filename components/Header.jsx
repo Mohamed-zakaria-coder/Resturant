@@ -159,14 +159,14 @@ export default function Header({ scrollHandler, whyUs }) {
       <div className="mx-auto h-full">
         <div className="relative shadow-xl sm:overflow-hidden h-full flex items-end">
           <div className="absolute inset-0 h-full">
-            {/* <Image
+            <Image
               priority
               fill
               className="h-full w-full object-cover"
               src={img}
               placeholder="blur"
               alt="SmoothySense"
-            /> */}
+            />
             {/* https://i.vimeocdn.com/video/810735117-9223db8da9dbc147c4873551cf481af6632c12877d7323e7f87a16d7390d8d79-d?mw=1300&mh=731&q=70 */}
             <video
               ref={videoRef}
@@ -177,7 +177,8 @@ export default function Header({ scrollHandler, whyUs }) {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                maxWidth: "auto",
+                maxWidth: "none",
+                position: "relative",
               }}
             >
               <source src={"/vid.mp4"}></source>

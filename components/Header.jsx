@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import img from "../public/hero.jpg";
 import logo from "../public/logo-transparent.png";
 import bghero from "../public/bghero-trans.png";
+// import bgvid from "../public/vid.mp4";
 import Link from "next/link";
 import { FaBars, FaShoppingBag } from "react-icons/fa";
 import { getToken } from "../auth";
@@ -11,11 +12,13 @@ import Cart from "./Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { getItems } from "../slices/cartSlice";
 import NotifyDialog from "./OrderNotifyDialog";
+import ReactPlayer from "react-player";
 
 export default function Header({ scrollHandler, whyUs }) {
   const cartItems = useSelector((state) => state.cart_items.value);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
   const dispatch = useDispatch();
+  const videoRef = useRef();
   const [menuOpened, setMenuOpened] = useState(false);
   const [cartOpened, setCartOpened] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -27,6 +30,9 @@ export default function Header({ scrollHandler, whyUs }) {
   useEffect(() => {
     setLoggedIn(getToken());
     getCart();
+    setTimeout(() => {
+      videoRef.current.play();
+    }, 1000);
   }, []);
 
   const handleClick = () => {
@@ -153,14 +159,29 @@ export default function Header({ scrollHandler, whyUs }) {
       <div className="mx-auto h-full">
         <div className="relative shadow-xl sm:overflow-hidden h-full flex items-end">
           <div className="absolute inset-0 h-full">
-            <Image
+            {/* <Image
               priority
               fill
               className="h-full w-full object-cover"
               src={img}
               placeholder="blur"
               alt="SmoothySense"
-            />
+            /> */}
+            {/* https://i.vimeocdn.com/video/810735117-9223db8da9dbc147c4873551cf481af6632c12877d7323e7f87a16d7390d8d79-d?mw=1300&mh=731&q=70 */}
+            <video
+              ref={videoRef}
+              loop
+              muted
+              autoPlay
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                maxWidth: "auto",
+              }}
+            >
+              <source src={"/vid.mp4"}></source>
+            </video>
             <div className="absolute inset-0 bg-gray-600 mix-blend-multiply" />
           </div>
           <div className="flex justify-between w-full h-full pt-16 flex-col sm:flex-row">

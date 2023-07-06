@@ -49,57 +49,57 @@ export async function getBlogPost(slug) {
   return await res.json();
 }
 
-export const getCartItems = async (setter) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${getToken()}`,
-    },
-  };
+// export const getCartItems = async (setter) => {
+//   const options = {
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${getToken()}`,
+//     },
+//   };
 
-  const res = await fetch(host + `/cart-items`, options);
-  return await res.json();
-};
+//   const res = await fetch(host + `/cart-items`, options);
+//   return await res.json();
+// };
 
-export const addToCart = async (product, quantity) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${getToken()}`,
-    },
-    method: "POST",
-    body: JSON.stringify({ product, quantity }),
-  };
+// export const addToCart = async (product, quantity) => {
+//   const options = {
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${getToken()}`,
+//     },
+//     method: "POST",
+//     body: JSON.stringify({ product, quantity }),
+//   };
 
-  const res = await fetch(host + `/cart-items`, options);
-  return await res.json();
-};
+//   const res = await fetch(host + `/cart-items`, options);
+//   return await res.json();
+// };
 
-export const removeFromCart = async (product) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${getToken()}`,
-    },
-    method: "DELETE",
-  };
+// export const removeFromCart = async (product) => {
+//   const options = {
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${getToken()}`,
+//     },
+//     method: "DELETE",
+//   };
 
-  const res = await fetch(host + `/cart-items/${product}`, options);
-  return await res.json();
-};
+//   const res = await fetch(host + `/cart-items/${product}`, options);
+//   return await res.json();
+// };
 
-export const minusFromCart = async (product) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${getToken()}`,
-    },
-    method: "PATCH",
-  };
+// export const minusFromCart = async (product) => {
+//   const options = {
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${getToken()}`,
+//     },
+//     method: "PATCH",
+//   };
 
-  const res = await fetch(host + `/cart-items/${product}`, options);
-  return await res.json();
-};
+//   const res = await fetch(host + `/cart-items/${product}`, options);
+//   return await res.json();
+// };
 
 export const placeOrder = async (order) => {
   const options = {

@@ -6,7 +6,7 @@ export default function Footer() {
       <p
         className="font-medium text-red-700"
       >
-        SmoothySense
+        El Safty
       </p>
     </footer>
   )

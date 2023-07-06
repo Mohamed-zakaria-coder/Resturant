@@ -3,11 +3,13 @@ import Header from "../components/Header";
 import HomeProductCard from "../components/HomeProductCard";
 import LeftHandedCard from "../components/LeftHandedCard";
 import RightHandedCard from "../components/RightHandedCard";
+import CategorySliders from "../components/CategoriesSlider"
 import privacy from "../public/privacy-icon.png";
 import natural from "../public/natural-icon.png";
 import experience from "../public/experience-icon.png";
 import { useRouter } from "next/router";
 import { getProducts } from "../helpers";
+import Carousel from "../components/Carousel"
 
 export default function Gallery({ products }) {
   let productsRef = useRef<HTMLDivElement>();
@@ -41,6 +43,7 @@ export default function Gallery({ products }) {
   return (
     <>
       <Header scrollHandler={scrollHandler} whyUs={whyUsScroll} />
+      <CategorySliders/>
       <div
         className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8"
         ref={productsRef}
@@ -68,14 +71,14 @@ export default function Gallery({ products }) {
         <div className="text-center" ref={whyUsRef} id="whyus">
           <p className="mt-1 text-4xl font-extrabold uppercase text-gray-900 sm:text-5xl sm:tracking-tight py-28 pb-4">
             Why Choose{" "}
-            <span className="block text-red-600 sm:text-6xl">SmoothySense</span>
+            <span className="block text-red-600 sm:text-6xl">El Safty</span>
           </p>
         </div>
         <LeftHandedCard
           image={privacy}
           title={"Packaging & Privacy"}
           description={
-            "We understand the importance of privacy and discretion when it comes to intimate care products. That's why use plain packaging and discreet shipping to ensure your privacy is protected."
+            "At our restaurant, we understand that privacy is of utmost importance to our diners. That's why we prioritize discretion when it comes to our delivery service. We offer plain packaging and discreet delivery to ensure your confidentiality is safeguarded. We want you to feel comfortable and at ease while dining with us, knowing that we respect and value your privacy."
           }
         />
 
@@ -83,7 +86,7 @@ export default function Gallery({ products }) {
           image={natural}
           title={"Natural Ingredients"}
           description={
-            "We use only the finest natural ingredients in our products, free from harsh chemicals and artificial fragrances. Our lubricants and enhancers are gentle on your skin, so you can enjoy intimacy without worrying about irritation or discomfort."
+            "At our restaurant, we only source the freshest natural ingredients for our dishes. We believe in using only the best quality produce that is free from harmful chemicals and additives. Our commitment to natural ingredients means that our food is not only healthy and delicious but also gentle on your digestive system."
           }
         />
 
@@ -91,10 +94,12 @@ export default function Gallery({ products }) {
           image={experience}
           title={"Expertise & Experience"}
           description={
-            "Our team of experts has years of experience in developing and manufacturing intimate care products. We are dedicated to creating products that enhance your pleasure and improve your sexual health."
+            "As a team in the restaurant industry, we have a wealth of experience in crafting delicious meals. Our passion lies in creating dishes that not only satisfy your taste buds but also support your health and well-being. We take pride in using only natural and sustainably sourced ingredients, ensuring that every meal is both nutritious and environmentally friendly. Our commitment to your satisfaction is unwavering, and we look forward to bringing our culinary expertise to your table."
           }
         />
       </div>
+      
+
     </>
   );
 }

@@ -30,7 +30,7 @@ const SignUp = () => {
       <div className="flex items-center h-48 relative w-full">
         <Link href="/">
           <Image
-            alt={"SmoothySense"}
+            alt={"El Safty"}
             className="rounded-lg max-h-28 object-contain sm:max-h-none mb-10"
             src="/logo-transparent.png"
             fill

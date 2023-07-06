@@ -13,6 +13,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getItems } from "../slices/cartSlice";
 import NotifyDialog from "./OrderNotifyDialog";
 import ReactPlayer from "react-player";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Carousel from "./Carousel";
 
 export default function Header({ scrollHandler, whyUs }) {
   const cartItems = useSelector((state) => state.cart_items.value);
@@ -23,17 +27,17 @@ export default function Header({ scrollHandler, whyUs }) {
   const [cartOpened, setCartOpened] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const getCart = async () => {
-    const res = await getCartItems();
-    dispatch(getItems(res));
-  };
-  useEffect(() => {
-    setLoggedIn(getToken());
-    getCart();
-    setTimeout(() => {
-      videoRef.current.play();
-    }, 1000);
-  }, []);
+  // const getCart = async () => {
+  //   const res = await getCartItems();
+  //   dispatch(getItems(res));
+  // };
+  // useEffect(() => {
+  //   setLoggedIn(getToken());
+  //   getCart();
+  //   setTimeout(() => {
+  //     videoRef.current.play();
+  //   }, 1000);
+  // }, []);
 
   const handleClick = () => {
     setMenuOpened((prev) => !prev);
@@ -45,7 +49,7 @@ export default function Header({ scrollHandler, whyUs }) {
   };
 
   return (
-    <header className="relative h-[90vh] sm:h-[80vh]">
+    <header className="relative">
       {notifyDialogOpened && (
         <NotifyDialog setDialogOpened={setNotifyDialogOpened} />
       )}
@@ -73,7 +77,7 @@ export default function Header({ scrollHandler, whyUs }) {
             Home
           </Link>
           <p onClick={scrollHandler} className="my-5 cursor-pointer">
-            Our Products
+            Our Menu
           </p>
           <Link href="/blogs" className="my-5">
             Blog
@@ -94,7 +98,7 @@ export default function Header({ scrollHandler, whyUs }) {
                 className="h-full w-full object-contain"
                 src={logo}
                 placeholder="blur"
-                alt="SmoothySense"
+                alt="El Safty"
               />
             </Link>
           </span>
@@ -104,7 +108,7 @@ export default function Header({ scrollHandler, whyUs }) {
             Home
           </Link>
           <p onClick={scrollHandler} className="mx-2 cursor-pointer">
-            Our Products
+            Our Menu
           </p>
           <Link href="/blogs" className="mr-2">
             Blog
@@ -156,19 +160,19 @@ export default function Header({ scrollHandler, whyUs }) {
           )}
         </div>
       </div>
-      <div className="mx-auto h-full">
-        <div className="relative shadow-xl sm:overflow-hidden h-full flex items-end">
-          <div className="absolute inset-0 h-full">
+      <div className="header-carousel shadow-xl">
+         {/* <div className="relative shadow-xl sm:overflow-hidden h-full flex items-end"> */}
+          {/* <div className="absolute inset-0 h-full">
             <Image
               priority
               fill
               className="h-full w-full object-cover"
               src={img}
               placeholder="blur"
-              alt="SmoothySense"
-            />
+            alt="El Safty" */}
+            {/* } */}
             {/* https://i.vimeocdn.com/video/810735117-9223db8da9dbc147c4873551cf481af6632c12877d7323e7f87a16d7390d8d79-d?mw=1300&mh=731&q=70 */}
-            <video
+            {/* <video
               ref={videoRef}
               loop
               muted
@@ -180,44 +184,48 @@ export default function Header({ scrollHandler, whyUs }) {
                 maxWidth: "none",
                 position: "relative",
               }}
-            >
+              >
               <source src={"/vid.mp4"}></source>
-            </video>
-            <div className="absolute inset-0 bg-gray-600 mix-blend-multiply" />
-          </div>
-          <div className="flex justify-between w-full h-full pt-16 flex-col sm:flex-row">
+            </video> */}
+            {/* <div className="absolute inset-0 bg-gray-600 mix-blend-multiply" />
+          </div> */}
+          {/* <div className="flex justify-between items-center w-full h-full pt-16 flex-col sm:flex-row">
             <div className="relative px-4 pt-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8 sm:mb-10">
               <h1 className="mt-1 font-bold text-gray-900 text-5xl xs:text-6xl sm:tracking-tight sm:text-7xl md:text-8xl">
-                <span className="block text-green-400">SmoothySense</span>
+              <span className="block text-green-400">El Safty</span>
                 <p className="relative left-0 right-0 max-w-2xl text-2xl sm:text-3xl font-semibold uppercase tracking-wide text-white">
-                  A natural way to spice up your love life.
+                Discover a natural and flavorful way to enhance your dining
+                  experience with us.{" "}
                 </p>
               </h1>
               <div className="mt-5 max-w-xs sm:flex sm:max-w-none">
-                <button
-                  className="flex items-center justify-center rounded-md border border-transparent bg-transparent px-4 py-3 text-base font-medium text-green-400 outline outline-green-400 shadow-sm hover:bg-green-400 hover:text-white sm:px-8 transition"
-                  onClick={scrollHandler}
-                >
-                  Shop now
-                </button>
+              <button
+              className="flex items-center justify-center rounded-md border border-transparent bg-transparent px-4 py-3 text-base font-medium text-green-400 outline outline-green-400 shadow-sm hover:bg-green-400 hover:text-white sm:px-8 transition"
+              onClick={scrollHandler}
+              >
+              Shop now
+              </button>
               </div>
-            </div>
-            <div className="relative h-full w-full">
+              </div>
+              <div className="relative h-full w-full">
               <Image
                 priority
                 fill
                 className="h-full w-full object-contain object-left-top opacity-70"
                 src={bghero}
                 placeholder="blur"
-                alt="SmoothySense"
+                alt="El Safty"
                 style={{
                   transform: "rotate(180deg)",
                 }}
-              />
-            </div>
-          </div>
-        </div>
+                />
+                </div>
+              </div> */}
+        {/* </div> */}
       </div>
+      <div className="carousel-parent">
+              <Carousel />
+              </div>
     </header>
   );
 }

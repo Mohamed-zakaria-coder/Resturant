@@ -65,7 +65,7 @@ const Navbar = () => {
             Home
           </Link>
           <Link href="/#products" className="my-5 cursor-pointer">
-            Our Products
+            Our Menu
           </Link>
           <Link href="/blogs" className="my-5">
             Blog
@@ -95,7 +95,7 @@ const Navbar = () => {
             Home
           </Link>
           <Link href="/#products" className="mx-2 cursor-pointer">
-            Our Products
+            Our Menu
           </Link>
           <Link href="/blogs" className="mr-2">
             Blog
